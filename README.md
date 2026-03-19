@@ -9,8 +9,8 @@ A responsive promotional website for **Fitness Sports Center**, built as part of
 | Resource | URL |
 |----------|-----|
 | 🌐 Live Demo | [your-deployed-link.vercel.app](https://gym-website-two-chi.vercel.app/) |
-| 🎨 Figma Design | [View Figma Design](https://figma.com/your-design-link) |
-| 💻 GitHub Repo | [github.com/yourusername/fitness-sports-center](https://github.com/yourusername/fitness-sports-center) |
+| 🎨 Figma Design | [View Figma Design](https://www.figma.com/design/AL6wlkqkmySgGUexUozsHr/Untitled?node-id=0-1&t=ZsvQoFiQwqDFFYL2-1) |
+| 💻 GitHub Repo | [github.com/yourusername/fitness-sports-center](https://github.com/rashmikaz/gym-website) |
 
 > **Replace** the placeholder links above with your actual deployed URL, Figma link, and GitHub repo URL before submitting.
 
@@ -42,6 +42,7 @@ The home page includes all required sections:
 ## ✅ Features
 
 - Fully responsive design (mobile, tablet, desktop)
+- Dark / Light mode toggle (persists via localStorage)
 - Mobile slide-in navigation drawer
 - Auto-sliding image card with gym zone previews
 - Scroll-aware navbar with blur effect
@@ -78,18 +79,6 @@ npm run dev
 
 The app will be running at `http://localhost:5173`
 
-### Build for Production
 
-```bash
-npm run build
-```
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
-
----
 
 
