@@ -1,1 +1,61 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700;900&display=swap");
+
+/* ── Theme Variables ───────────────────────────────────────────────────────── */
+:root {
+  --bg: #f7f7f5;
+  --bg-section: #f7f7f5;
+  --bg-alt: #efefed;
+  --bg-card: #ffffff;
+  --text: #0a0a0a;
+  --text-muted: rgba(10, 10, 10, 0.42);
+  --text-faint: rgba(10, 10, 10, 0.2);
+  --border: rgba(10, 10, 10, 0.08);
+  --border-strong: rgba(10, 10, 10, 0.14);
+  --accent: #d4940a;
+  --accent-dim: rgba(212, 148, 10, 0.08);
+  --accent-border: rgba(212, 148, 10, 0.3);
+  --hero-bg: #0a0a0a;
+  --features-bg: #080808;
+}
+
+html.dark {
+  --bg: #0a0a0a;
+  --bg-section: #0d0d0d;
+  --bg-alt: #111111;
+  --bg-card: #161616;
+  --text: #f2efe7;
+  --text-muted: rgba(242, 239, 231, 0.42);
+  --text-faint: rgba(242, 239, 231, 0.18);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --accent: #d4940a;
+  --accent-dim: rgba(212, 148, 10, 0.08);
+  --accent-border: rgba(212, 148, 10, 0.3);
+  --hero-bg: #0a0a0a;
+  --features-bg: #080808;
+}
+
+/* ── Smooth transitions ────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────────────── */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+body {
+  background: var(--bg);
+  font-family: "DM Sans", sans-serif;
+}

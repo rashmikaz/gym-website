@@ -3,8 +3,8 @@ import { useState } from "react";
 // ── Icons ─────────────────────────────────────────────────────────────────────
 const IconPin = () => (
   <svg
-    width="13"
-    height="13"
+    width="16"
+    height="16"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -18,8 +18,8 @@ const IconPin = () => (
 );
 const IconClock = () => (
   <svg
-    width="13"
-    height="13"
+    width="16"
+    height="16"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -33,8 +33,8 @@ const IconClock = () => (
 );
 const IconPhone = () => (
   <svg
-    width="13"
-    height="13"
+    width="16"
+    height="16"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -47,8 +47,8 @@ const IconPhone = () => (
 );
 const IconMail = () => (
   <svg
-    width="13"
-    height="13"
+    width="16"
+    height="16"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -62,8 +62,8 @@ const IconMail = () => (
 );
 const IconArrow = () => (
   <svg
-    width="12"
-    height="12"
+    width="14"
+    height="14"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -110,11 +110,11 @@ function Field({
     width: "100%",
     background: "transparent",
     border: "none",
-    borderBottom: `1px solid ${error ? "rgba(200,50,50,0.5)" : focused ? "#D4940A" : "rgba(10,10,10,0.1)"}`,
+    borderBottom: `1.5px solid ${error ? "rgba(200,50,50,0.5)" : focused ? "#D4940A" : "var(--border-strong)"}`,
     borderRadius: 0,
-    padding: lifted ? "20px 0 7px" : "14px 0 7px",
-    color: "#0A0A0A",
-    fontSize: 13,
+    padding: lifted ? "24px 0 10px" : "17px 0 10px",
+    color: "var(--text)",
+    fontSize: 15,
     fontFamily: "'DM Sans', sans-serif",
     fontWeight: 400,
     outline: "none",
@@ -122,7 +122,6 @@ function Field({
     boxSizing: "border-box",
     display: "block",
     lineHeight: 1.6,
-    transition: "border-color 0.25s, padding 0.22s",
     caretColor: "#D4940A",
   };
 
@@ -132,16 +131,16 @@ function Field({
         style={{
           position: "absolute",
           left: 0,
-          top: lifted ? 1 : 14,
-          fontSize: lifted ? 8 : 12,
+          top: lifted ? 2 : 17,
+          fontSize: lifted ? 10 : 14,
           fontWeight: lifted ? 700 : 400,
-          letterSpacing: lifted ? "0.18em" : "0.03em",
+          letterSpacing: lifted ? "0.14em" : "0.02em",
           textTransform: lifted ? "uppercase" : "none",
           color: error
             ? "rgba(200,50,50,0.8)"
             : lifted
               ? "#D4940A"
-              : "rgba(10,10,10,0.32)",
+              : "var(--text-muted)",
           pointerEvents: "none",
           transition: "all 0.22s cubic-bezier(0.22,1,0.36,1)",
         }}
@@ -152,7 +151,7 @@ function Field({
       {as === "textarea" ? (
         <textarea
           name={name}
-          rows={rows || 3}
+          rows={rows || 4}
           value={value}
           onChange={onChange}
           onFocus={() => setFocused(true)}
@@ -171,12 +170,13 @@ function Field({
         />
       )}
 
+      {/* gold sweep */}
       <div
         style={{
           position: "absolute",
           bottom: 0,
           left: 0,
-          height: 1,
+          height: "1.5px",
           background: "#D4940A",
           width: focused ? "100%" : "0%",
           transition: "width 0.38s cubic-bezier(0.22,1,0.36,1)",
@@ -187,11 +187,11 @@ function Field({
         <span
           style={{
             position: "absolute",
-            bottom: -16,
+            bottom: -20,
             left: 0,
-            fontSize: 8,
-            color: "rgba(200,50,50,0.8)",
-            letterSpacing: "0.1em",
+            fontSize: 11,
+            color: "rgba(200,50,50,0.85)",
+            letterSpacing: "0.08em",
             textTransform: "uppercase",
           }}
         >
@@ -228,7 +228,7 @@ export default function ContactSection() {
     if (!form.name.trim()) e.name = "Required";
     if (!form.email.trim()) e.email = "Required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      e.email = "Invalid";
+      e.email = "Invalid email";
     if (!form.message.trim()) e.message = "Required";
     return e;
   };
@@ -247,15 +247,13 @@ export default function ContactSection() {
     <section
       id="contact"
       style={{
-        background: "#F2F0EC",
+        background: "var(--bg-section)",
         fontFamily: "'DM Sans', sans-serif",
         position: "relative",
         overflow: "hidden",
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700;800&display=swap');
-
         @keyframes cs-spin   { to { transform: rotate(360deg); } }
         @keyframes cs-fadein { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
         @keyframes cs-check  { from { stroke-dashoffset: 40; } to { stroke-dashoffset: 0; } }
@@ -264,172 +262,115 @@ export default function ContactSection() {
           50%     { box-shadow: 0 0 24px 6px rgba(212,148,10,0.18); }
         }
 
-        input:-webkit-autofill, textarea:-webkit-autofill {
+        html:not(.dark) input:-webkit-autofill,
+        html:not(.dark) textarea:-webkit-autofill {
           -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
           -webkit-text-fill-color: #0A0A0A !important;
         }
+        html.dark input:-webkit-autofill,
+        html.dark textarea:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0 1000px #161616 inset !important;
+          -webkit-text-fill-color: #F2EFE7 !important;
+        }
 
-        /* ── Root layout: mobile = single col stacked ── */
+        /* ── Layout ── */
         .cs-outer {
           display: flex;
           flex-direction: column;
         }
+        @media (min-width: 768px) {
+          .cs-outer { flex-direction: row; min-height: 820px; }
+        }
 
-        /* ── Image block ── */
+        /* ── Image col ── */
         .cs-img-block {
           position: relative;
           width: 100%;
-          height: 56vw;          /* tall-ish on mobile */
-          min-height: 280px;
-          max-height: 420px;
+          height: 60vw;
+          min-height: 300px;
+          max-height: 440px;
           overflow: hidden;
           flex-shrink: 0;
         }
+        @media (min-width: 768px) {
+          .cs-img-block { width: 42%; height: auto; max-height: none; min-height: unset; }
+        }
+        @media (min-width: 1100px) {
+          .cs-img-block { width: 44%; }
+        }
 
-        /* ── Form block ── */
+        /* ── Form col ── */
         .cs-form-block {
-          width: 100%;
-          padding: 40px 20px 52px;
-          background: #F2F0EC;
+          flex: 1;
+          padding: 48px 24px 60px;
+          background: var(--bg-section);
           display: flex;
           flex-direction: column;
           justify-content: center;
         }
+        @media (min-width: 480px) { .cs-form-block { padding: 56px 36px 68px; } }
+        @media (min-width: 768px) { .cs-form-block { padding: 72px 52px 80px; } }
+        @media (min-width: 1100px) { .cs-form-block { padding: 88px 76px 96px; } }
 
-        /* ── sm (480px+): form padding grows ── */
-        @media (min-width: 480px) {
-          .cs-form-block {
-            padding: 48px 32px 60px;
-          }
-        }
-
-        /* ── md (768px+): side by side, image taller ── */
-        @media (min-width: 768px) {
-          .cs-outer {
-            flex-direction: row;
-            min-height: 720px;
-          }
-          .cs-img-block {
-            width: 42%;
-            height: auto;
-            max-height: none;
-            min-height: unset;
-            flex-shrink: 0;
-            position: sticky;
-            top: 0;
-            align-self: stretch;
-          }
-          .cs-form-block {
-            flex: 1;
-            padding: 64px 48px 72px;
-            overflow-y: auto;
-          }
-        }
-
-        /* ── lg (1100px+): more breathing room ── */
-        @media (min-width: 1100px) {
-          .cs-img-block { width: 44%; }
-          .cs-form-block { padding: 80px 72px 88px; }
-        }
-
-        /* ── Name + email: stack mobile, 2-col 520px+ ── */
-        .cs-row2 {
-          display: flex;
-          flex-direction: column;
-          gap: 30px;
-        }
+        /* ── Form inner ── */
+        .cs-row2 { display: flex; flex-direction: column; gap: 36px; }
         @media (min-width: 520px) {
-          .cs-row2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-          }
+          .cs-row2 { display: grid !important; grid-template-columns: 1fr 1fr; gap: 28px; }
         }
 
-        /* ── Chips: 2-col mobile, 3-col 460px+ ── */
-        .cs-chips {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 6px;
-        }
-        @media (min-width: 460px) {
-          .cs-chips { grid-template-columns: repeat(3, 1fr); }
-        }
+        .cs-chips { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        @media (min-width: 460px) { .cs-chips { grid-template-columns: repeat(3, 1fr); } }
 
-        /* ── Info grid on image: 1-col mobile, 2-col 400px+ ── */
-        .cs-info-grid {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
+        .cs-info-grid { display: flex; flex-direction: column; gap: 14px; }
         @media (min-width: 400px) {
-          .cs-info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px 20px;
-          }
+          .cs-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
         }
 
-        /* ── Submit row: stack mobile, row 480px+ ── */
-        .cs-submit-row {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          align-items: flex-start;
-        }
+        .cs-submit-row { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
         @media (min-width: 480px) {
-          .cs-submit-row {
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-          }
+          .cs-submit-row { flex-direction: row; align-items: center; justify-content: space-between; }
         }
 
-        /* ── Heading size clamps ── */
-        .cs-img-heading {
-          font-family: 'Bebas Neue', sans-serif;
-          font-weight: 400;
-          letter-spacing: 0.03em;
-          line-height: 0.93;
-          margin: 0 0 20px;
-          font-size: clamp(2rem, 6vw, 4.4rem);
-        }
-        .cs-form-heading {
-          font-family: 'Bebas Neue', sans-serif;
-          font-weight: 400;
-          letter-spacing: 0.04em;
-          line-height: 1;
-          color: #0A0A0A;
-          margin: 0 0 6px;
-          font-size: clamp(1.8rem, 4vw, 2.8rem);
-        }
-        .cs-success-heading {
-          font-family: 'Bebas Neue', sans-serif;
-          font-weight: 400;
-          letter-spacing: 0.04em;
-          color: #0A0A0A;
-          margin: 0 0 10px;
-          font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+        .cs-card {
+          background: var(--bg-card);
+          border-radius: 20px;
+          padding: clamp(28px, 5vw, 48px);
+          box-shadow: 0 2px 8px rgba(10,10,10,0.06), 0 16px 48px rgba(10,10,10,0.1), 0 0 0 1px var(--border);
+          position: relative;
+          overflow: hidden;
+          max-width: 560px;
         }
       `}</style>
 
+      {/* gold glow */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: -80,
+          right: -60,
+          width: 440,
+          height: 440,
+          borderRadius: "50%",
+          pointerEvents: "none",
+          background:
+            "radial-gradient(circle, rgba(212,148,10,0.06) 0%, transparent 68%)",
+        }}
+      />
+
       <div className="cs-outer">
-        {/* ══ IMAGE SIDE ═══════════════════════════════════════════════════════ */}
+        {/* ══ IMAGE SIDE ══════════════════════════════════════════════════════ */}
         <div className="cs-img-block">
           <img
             src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1000&q=88"
-            alt="Fitness SC gym floor"
+            alt="Fitness SC gym"
             style={{
               position: "absolute",
               inset: 0,
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              objectPosition: "center",
             }}
           />
-
-          {/* Layered gradients */}
           <div
             style={{
               position: "absolute",
@@ -443,11 +384,10 @@ export default function ContactSection() {
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.72) 100%)",
+                "linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.75) 100%)",
             }}
           />
 
-          {/* Content over image */}
           <div
             style={{
               position: "absolute",
@@ -455,30 +395,29 @@ export default function ContactSection() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
-              padding: "clamp(20px, 4vw, 52px)",
+              padding: "clamp(24px, 4vw, 52px)",
             }}
           >
-            {/* Top: brand */}
+            {/* Brand */}
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <div
                 style={{
-                  width: 32,
-                  height: 32,
+                  width: 36,
+                  height: 36,
                   borderRadius: "50%",
+                  flexShrink: 0,
                   border: "1.5px solid #D4940A",
                   background: "rgba(212,148,10,0.12)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  flexShrink: 0,
                 }}
               >
                 <span
                   style={{
                     fontFamily: "'Bebas Neue', sans-serif",
-                    fontSize: 11,
+                    fontSize: 13,
                     color: "#D4940A",
-                    letterSpacing: "0.04em",
                   }}
                 >
                   FS
@@ -487,7 +426,7 @@ export default function ContactSection() {
               <span
                 style={{
                   fontFamily: "'Bebas Neue', sans-serif",
-                  fontSize: 15,
+                  fontSize: 17,
                   color: "rgba(255,255,255,0.88)",
                   letterSpacing: "0.08em",
                 }}
@@ -496,23 +435,23 @@ export default function ContactSection() {
               </span>
             </div>
 
-            {/* Bottom: heading + info + socials */}
+            {/* Bottom content */}
             <div>
-              {/* eyebrow */}
+              {/* Eyebrow */}
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: 10,
-                  marginBottom: 14,
+                  marginBottom: 16,
                 }}
               >
-                <div style={{ width: 18, height: 1, background: "#D4940A" }} />
+                <div style={{ width: 20, height: 1, background: "#D4940A" }} />
                 <span
                   style={{
-                    fontSize: 8,
+                    fontSize: 11,
                     fontWeight: 700,
-                    letterSpacing: "0.2em",
+                    letterSpacing: "0.18em",
                     textTransform: "uppercase",
                     color: "#D4940A",
                   }}
@@ -521,8 +460,17 @@ export default function ContactSection() {
                 </span>
               </div>
 
-              {/* heading */}
-              <h2 className="cs-img-heading">
+              {/* Heading */}
+              <h2
+                style={{
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: "clamp(2.2rem, 6vw, 4.6rem)",
+                  fontWeight: 400,
+                  letterSpacing: "0.03em",
+                  lineHeight: 0.93,
+                  margin: "0 0 24px",
+                }}
+              >
                 <span style={{ color: "#F2EFE7", display: "block" }}>
                   START YOUR
                 </span>
@@ -537,25 +485,25 @@ export default function ContactSection() {
                 </span>
               </h2>
 
-              {/* info grid */}
-              <div className="cs-info-grid" style={{ marginBottom: 20 }}>
+              {/* Info grid */}
+              <div className="cs-info-grid" style={{ marginBottom: 24 }}>
                 {INFO.map(({ Icon, label, value }, i) => (
                   <div
                     key={i}
                     style={{
                       display: "flex",
                       alignItems: "flex-start",
-                      gap: 9,
+                      gap: 12,
                     }}
                   >
                     <div
                       style={{
-                        width: 26,
-                        height: 26,
-                        borderRadius: 7,
+                        width: 34,
+                        height: 34,
+                        borderRadius: 9,
                         flexShrink: 0,
-                        border: "1px solid rgba(212,148,10,0.3)",
-                        background: "rgba(212,148,10,0.08)",
+                        border: "1px solid rgba(212,148,10,0.35)",
+                        background: "rgba(212,148,10,0.1)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -568,22 +516,22 @@ export default function ContactSection() {
                     <div>
                       <div
                         style={{
-                          fontSize: 7,
+                          fontSize: 10,
                           fontWeight: 700,
                           letterSpacing: "0.14em",
                           textTransform: "uppercase",
-                          color: "rgba(212,148,10,0.85)",
-                          marginBottom: 2,
+                          color: "rgba(212,148,10,0.9)",
+                          marginBottom: 3,
                         }}
                       >
                         {label}
                       </div>
                       <div
                         style={{
-                          fontSize: 11,
+                          fontSize: 13,
                           fontWeight: 500,
-                          color: "rgba(242,239,231,0.72)",
-                          lineHeight: 1.4,
+                          color: "rgba(242,239,231,0.8)",
+                          lineHeight: 1.5,
                         }}
                       >
                         {value}
@@ -593,38 +541,38 @@ export default function ContactSection() {
                 ))}
               </div>
 
-              {/* socials */}
-              <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+              {/* Socials */}
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 {["Instagram", "Facebook", "WhatsApp"].map((s) => (
                   <a
                     key={s}
                     href="#"
                     style={{
-                      fontSize: 8,
+                      fontSize: 10,
                       fontWeight: 700,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
-                      color: "rgba(255,255,255,0.36)",
-                      border: "1px solid rgba(255,255,255,0.13)",
-                      borderRadius: 3,
-                      padding: "5px 10px",
+                      color: "rgba(255,255,255,0.4)",
+                      border: "1px solid rgba(255,255,255,0.14)",
+                      borderRadius: 4,
+                      padding: "7px 14px",
                       textDecoration: "none",
                       transition: "all 0.22s",
-                      minHeight: 28,
+                      minHeight: 32,
                       display: "flex",
                       alignItems: "center",
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.color = "#D4940A";
                       e.currentTarget.style.borderColor =
-                        "rgba(212,148,10,0.4)";
+                        "rgba(212,148,10,0.45)";
                       e.currentTarget.style.background =
                         "rgba(212,148,10,0.08)";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = "rgba(255,255,255,0.36)";
+                      e.currentTarget.style.color = "rgba(255,255,255,0.4)";
                       e.currentTarget.style.borderColor =
-                        "rgba(255,255,255,0.13)";
+                        "rgba(255,255,255,0.14)";
                       e.currentTarget.style.background = "transparent";
                     }}
                   >
@@ -636,23 +584,23 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* ══ FORM SIDE ════════════════════════════════════════════════════════ */}
+        {/* ══ FORM SIDE ═══════════════════════════════════════════════════════ */}
         <div className="cs-form-block">
-          {/* eyebrow */}
+          {/* Eyebrow */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 10,
-              marginBottom: 12,
+              gap: 12,
+              marginBottom: 14,
             }}
           >
-            <div style={{ width: 20, height: 1, background: "#D4940A" }} />
+            <div style={{ width: 22, height: 1, background: "#D4940A" }} />
             <span
               style={{
-                fontSize: 8,
+                fontSize: 11,
                 fontWeight: 700,
-                letterSpacing: "0.2em",
+                letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 color: "#D4940A",
               }}
@@ -661,61 +609,64 @@ export default function ContactSection() {
             </span>
           </div>
 
-          <h3 className="cs-form-heading">Let's Talk</h3>
+          {/* Heading */}
+          <h3
+            style={{
+              fontFamily: "'Bebas Neue', sans-serif",
+              fontSize: "clamp(2rem, 4vw, 3.2rem)",
+              fontWeight: 400,
+              letterSpacing: "0.04em",
+              color: "var(--text)",
+              lineHeight: 1,
+              margin: "0 0 8px",
+            }}
+          >
+            Let's Talk
+          </h3>
           <p
             style={{
-              fontSize: 13,
-              color: "rgba(10,10,10,0.38)",
+              fontSize: 15,
+              color: "var(--text-muted)",
               lineHeight: 1.8,
-              margin: "0 0 28px",
+              margin: "0 0 32px",
             }}
           >
             One of our coaches will reach out within the hour.
           </p>
 
-          {/* White card */}
-          <div
-            style={{
-              background: "#fff",
-              borderRadius: 18,
-              padding: "clamp(22px, 5vw, 40px)",
-              boxShadow:
-                "0 2px 8px rgba(10,10,10,0.04), 0 12px 40px rgba(10,10,10,0.08), 0 0 0 1px rgba(10,10,10,0.03)",
-              position: "relative",
-              overflow: "hidden",
-              maxWidth: 540,
-            }}
-          >
+          {/* ── Card ── */}
+          <div className="cs-card">
             {/* corner glow */}
             <div
               style={{
                 position: "absolute",
                 top: 0,
                 right: 0,
-                width: 150,
-                height: 150,
+                width: 160,
+                height: 160,
+                pointerEvents: "none",
                 background:
                   "radial-gradient(circle at top right, rgba(212,148,10,0.07) 0%, transparent 65%)",
-                pointerEvents: "none",
               }}
             />
 
             {status === "success" ? (
+              /* ── Success ── */
               <div
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-start",
-                  gap: 16,
-                  minHeight: 300,
+                  gap: 20,
+                  minHeight: 340,
                   justifyContent: "center",
                   animation: "cs-fadein 0.55s ease forwards",
                 }}
               >
                 <div
                   style={{
-                    width: 50,
-                    height: 50,
+                    width: 58,
+                    height: 58,
                     borderRadius: "50%",
                     border: "1px solid rgba(212,148,10,0.35)",
                     background: "rgba(212,148,10,0.07)",
@@ -725,7 +676,7 @@ export default function ContactSection() {
                     animation: "cs-pulse 2.5s ease infinite",
                   }}
                 >
-                  <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+                  <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
                     <path
                       d="M6 16l8 8L26 8"
                       stroke="#D4940A"
@@ -741,28 +692,37 @@ export default function ContactSection() {
                 <div>
                   <div
                     style={{
-                      fontSize: 8,
+                      fontSize: 11,
                       fontWeight: 700,
-                      letterSpacing: "0.2em",
+                      letterSpacing: "0.18em",
                       textTransform: "uppercase",
                       color: "#D4940A",
-                      marginBottom: 8,
+                      marginBottom: 10,
                     }}
                   >
                     Message Received
                   </div>
-                  <h3 className="cs-success-heading">
+                  <h3
+                    style={{
+                      fontFamily: "'Bebas Neue', sans-serif",
+                      fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
+                      color: "var(--text)",
+                      margin: "0 0 12px",
+                      letterSpacing: "0.04em",
+                      fontWeight: 400,
+                    }}
+                  >
                     We'll be in touch,
                     <br />
                     {form.name.split(" ")[0]}.
                   </h3>
                   <p
                     style={{
-                      fontSize: 12,
-                      color: "rgba(10,10,10,0.36)",
+                      fontSize: 14,
+                      color: "var(--text-muted)",
                       lineHeight: 1.8,
                       margin: 0,
-                      maxWidth: 280,
+                      maxWidth: 300,
                     }}
                   >
                     Expect a message from one of our coaches within the hour.
@@ -777,33 +737,34 @@ export default function ContactSection() {
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: 7,
+                    gap: 8,
                     background: "none",
                     border: "none",
-                    color: "rgba(10,10,10,0.28)",
-                    fontSize: 8,
+                    color: "var(--text-muted)",
+                    fontSize: 11,
                     fontWeight: 700,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     cursor: "pointer",
                     padding: 0,
-                    transition: "color 0.2s",
+                    minHeight: 40,
                     fontFamily: "'DM Sans', sans-serif",
-                    minHeight: 36,
+                    transition: "color 0.2s",
                   }}
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.color = "#D4940A")
                   }
                   onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "rgba(10,10,10,0.28)")
+                    (e.currentTarget.style.color = "var(--text-muted)")
                   }
                 >
                   Send another <IconArrow />
                 </button>
               </div>
             ) : (
+              /* ── Form fields ── */
               <div
-                style={{ display: "flex", flexDirection: "column", gap: 28 }}
+                style={{ display: "flex", flexDirection: "column", gap: 36 }}
               >
                 {/* Name + Email */}
                 <div className="cs-row2">
@@ -837,12 +798,12 @@ export default function ContactSection() {
                 <div>
                   <div
                     style={{
-                      fontSize: 8,
+                      fontSize: 11,
                       fontWeight: 700,
-                      letterSpacing: "0.18em",
+                      letterSpacing: "0.16em",
                       textTransform: "uppercase",
-                      color: "rgba(10,10,10,0.24)",
-                      marginBottom: 10,
+                      color: "var(--text-faint)",
+                      marginBottom: 12,
                     }}
                   >
                     I'm Interested In
@@ -856,30 +817,30 @@ export default function ContactSection() {
                           onClick={() => toggle(item)}
                           style={{
                             background: on
-                              ? "rgba(212,148,10,0.07)"
-                              : "rgba(10,10,10,0.02)",
-                            border: `1px solid ${on ? "rgba(212,148,10,0.4)" : "rgba(10,10,10,0.07)"}`,
-                            borderRadius: 5,
-                            padding: "9px 8px",
-                            fontSize: 8,
+                              ? "var(--accent-dim)"
+                              : "var(--border)",
+                            border: `1px solid ${on ? "var(--accent-border)" : "var(--border-strong)"}`,
+                            borderRadius: 6,
+                            padding: "10px 12px",
+                            fontSize: 11,
                             fontWeight: 700,
-                            letterSpacing: "0.09em",
+                            letterSpacing: "0.08em",
                             textTransform: "uppercase",
-                            color: on ? "#D4940A" : "rgba(10,10,10,0.32)",
+                            color: on ? "#D4940A" : "var(--text-muted)",
                             cursor: "pointer",
                             transition: "all 0.18s",
                             textAlign: "left",
                             fontFamily: "'DM Sans', sans-serif",
                             display: "flex",
                             alignItems: "center",
-                            gap: 5,
-                            minHeight: 36,
+                            gap: 6,
+                            minHeight: 40,
                           }}
                         >
                           {on && (
                             <svg
-                              width="7"
-                              height="7"
+                              width="9"
+                              height="9"
                               viewBox="0 0 12 12"
                               fill="none"
                               stroke="#D4940A"
@@ -897,19 +858,19 @@ export default function ContactSection() {
                 </div>
 
                 {/* Message */}
-                <div style={{ paddingBottom: 2 }}>
+                <div style={{ paddingBottom: 4 }}>
                   <Field
                     label="Your Goals / Message"
                     name="message"
                     as="textarea"
-                    rows={3}
+                    rows={4}
                     value={form.message}
                     onChange={handleChange}
                     error={errors.message}
                   />
                 </div>
 
-                {/* Submit row */}
+                {/* Submit */}
                 <div className="cs-submit-row">
                   <button
                     onClick={handleSubmit}
@@ -918,20 +879,20 @@ export default function ContactSection() {
                       display: "inline-flex",
                       alignItems: "center",
                       gap: 12,
-                      background: "#0A0A0A",
+                      background: "var(--text)",
                       border: "none",
-                      borderRadius: 5,
-                      padding: "14px 28px",
-                      color: "#F2EFE7",
-                      fontSize: 9,
+                      borderRadius: 6,
+                      padding: "16px 32px",
+                      color: "var(--bg)",
+                      fontSize: 12,
                       fontWeight: 800,
-                      letterSpacing: "0.18em",
+                      letterSpacing: "0.16em",
                       textTransform: "uppercase",
                       cursor: status === "loading" ? "not-allowed" : "pointer",
                       opacity: status === "loading" ? 0.6 : 1,
                       transition: "all 0.25s",
                       fontFamily: "'DM Sans', sans-serif",
-                      minHeight: 48,
+                      minHeight: 52,
                       flexShrink: 0,
                     }}
                     onMouseEnter={(e) => {
@@ -944,8 +905,8 @@ export default function ContactSection() {
                       }
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = "#0A0A0A";
-                      e.currentTarget.style.color = "#F2EFE7";
+                      e.currentTarget.style.background = "var(--text)";
+                      e.currentTarget.style.color = "var(--bg)";
                       e.currentTarget.style.transform = "none";
                       e.currentTarget.style.boxShadow = "none";
                     }}
@@ -954,10 +915,10 @@ export default function ContactSection() {
                       <>
                         <span
                           style={{
-                            width: 11,
-                            height: 11,
-                            border: "1.5px solid rgba(255,255,255,0.2)",
-                            borderTopColor: "#F2EFE7",
+                            width: 13,
+                            height: 13,
+                            border: "2px solid rgba(255,255,255,0.2)",
+                            borderTopColor: "var(--bg)",
                             borderRadius: "50%",
                             animation: "cs-spin 0.7s linear infinite",
                             display: "inline-block",
@@ -976,8 +937,8 @@ export default function ContactSection() {
 
                   <p
                     style={{
-                      fontSize: 8,
-                      color: "rgba(10,10,10,0.2)",
+                      fontSize: 11,
+                      color: "var(--text-faint)",
                       letterSpacing: "0.08em",
                       textTransform: "uppercase",
                       margin: 0,

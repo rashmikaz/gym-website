@@ -9,7 +9,7 @@ const ZONES = [
   {
     src: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&q=80",
     label: "Cardio zone",
-    desc: "Space for working with free weights",
+    desc: "High-energy cardio machines & classes",
   },
   {
     src: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=700&q=80",
@@ -35,7 +35,6 @@ export default function AboutSection() {
       3500,
     );
   };
-
   useEffect(() => {
     startTimer();
     return () => clearInterval(timerRef.current);
@@ -53,147 +52,394 @@ export default function AboutSection() {
   const next = ZONES[(current + 1) % ZONES.length];
 
   return (
-    <section className="bg-[#F7F7F5] px-6 md:px-16 py-20 md:py-28">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-14 lg:gap-24">
+    <section
+      style={{
+        background: "var(--bg-section)",
+        padding: "clamp(60px,8vw,112px) clamp(20px,5vw,64px)",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1100,
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          gap: 56,
+          alignItems: "center",
+        }}
+        className="about-grid"
+      >
         {/* ── Left: Text ── */}
-        <div className="flex-shrink-0 lg:w-[270px]">
-          {/* Tag */}
-          <div className="inline-flex items-center gap-2 mb-7">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D4940A]" />
-            <span className="text-xs font-semibold tracking-widest uppercase text-[#888]">
-              Sport center
+        <div style={{ flexShrink: 0 }} className="about-text">
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              marginBottom: 28,
+            }}
+          >
+            <span
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: "#D4940A",
+                display: "inline-block",
+              }}
+            />
+            <span
+              style={{
+                fontSize: 10,
+                fontWeight: 700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "rgba(128,128,128,0.9)",
+              }}
+            >
+              Sport Center
             </span>
           </div>
 
-          {/* Heading */}
           <h2
-            className="text-[#0A0A0A] font-black leading-[1.08] mb-6"
             style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(1.75rem, 3.5vw, 2.4rem)",
+              fontFamily: "'Bebas Neue', sans-serif",
+              fontSize: "clamp(1.75rem,3.5vw,2.4rem)",
+              color: "var(--text)",
+              fontWeight: 900,
+              lineHeight: 1.08,
+              marginBottom: 24,
             }}
           >
             Welcome to the Fitness SC, where people work on strengthening both
             body and mind.
           </h2>
 
-          {/* Subtle divider */}
-          <div className="w-10 h-[2px] bg-[#D4940A] rounded-full mb-7" />
+          <div
+            style={{
+              width: 40,
+              height: 2,
+              background: "#D4940A",
+              borderRadius: 99,
+              marginBottom: 28,
+            }}
+          />
 
-          {/* CTA */}
-          <button className="group inline-flex items-center gap-3 bg-[#0A0A0A] text-white text-sm font-semibold px-6 py-3.5 rounded-full transition-all duration-300 hover:bg-[#D4940A] cursor-pointer border-none">
+          <button
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 12,
+              background: "var(--text)",
+              color: "var(--bg-card)",
+              border: "none",
+              borderRadius: 99,
+              padding: "12px 24px",
+              fontSize: 13,
+              fontWeight: 600,
+              cursor: "pointer",
+              transition: "all 0.3s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#D4940A")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "var(--text)")
+            }
+          >
             More
-            <span className="w-6 h-6 rounded-full bg-white/15 text-white flex items-center justify-center text-xs font-black leading-none transition-all duration-300 group-hover:bg-white group-hover:text-[#D4940A]">
+            <span
+              style={{
+                width: 24,
+                height: 24,
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.15)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 12,
+              }}
+            >
               ↗
             </span>
           </button>
         </div>
 
-        {/* ── Right: Dual card slider ── */}
-        <div className="flex-1 flex flex-col gap-4">
-          {/* Cards */}
-          <div className="flex gap-3 items-stretch">
-            {/* Current card — bigger */}
+        {/* ── Right: Slider ── */}
+        <div
+          style={{
+            flex: 1,
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            gap: 16,
+          }}
+        >
+          <div style={{ display: "flex", gap: 12, alignItems: "stretch" }}>
+            {/* Current card */}
             <div
-              className="relative rounded-[28px] overflow-hidden flex-[1.15] cursor-pointer"
-              style={{ height: "clamp(300px, 42vw, 420px)" }}
+              style={{
+                position: "relative",
+                borderRadius: 28,
+                overflow: "hidden",
+                flex: "1.15",
+                height: "clamp(280px,42vw,420px)",
+                cursor: "pointer",
+              }}
             >
               <img
                 key={current}
                 src={curr.src}
                 alt={curr.label}
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 style={{
-                  opacity: animating ? 0.85 : 1,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
                   transition: "opacity 0.4s, transform 0.7s",
+                  opacity: animating ? 0.85 : 1,
                 }}
               />
-              {/* Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-              {/* Zone tag — pill with blur */}
-              <span className="absolute top-4 left-4 backdrop-blur-sm bg-white/90 text-[#0A0A0A] text-xs font-bold tracking-wide px-4 py-1.5 rounded-full shadow-sm">
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2), transparent)",
+                }}
+              />
+              <span
+                style={{
+                  position: "absolute",
+                  top: 16,
+                  left: 16,
+                  background: "rgba(255,255,255,0.92)",
+                  color: "#0A0A0A",
+                  fontSize: 11,
+                  fontWeight: 700,
+                  letterSpacing: "0.06em",
+                  padding: "6px 14px",
+                  borderRadius: 99,
+                }}
+              >
                 {curr.label}
               </span>
-
-              {/* Counter badge */}
-              <span className="absolute top-4 right-4 bg-black/30 backdrop-blur-sm text-white/70 text-[11px] font-medium px-3 py-1 rounded-full">
+              <span
+                style={{
+                  position: "absolute",
+                  top: 16,
+                  right: 16,
+                  background: "rgba(0,0,0,0.3)",
+                  backdropFilter: "blur(4px)",
+                  color: "rgba(255,255,255,0.6)",
+                  fontSize: 10,
+                  padding: "4px 10px",
+                  borderRadius: 99,
+                }}
+              >
                 {current + 1} / {ZONES.length}
               </span>
-
-              {/* Bottom content */}
-              <div className="absolute bottom-0 left-0 right-0 p-5 flex justify-between items-end gap-3">
-                <p className="text-white text-lg font-semibold leading-snug max-w-[55%]">
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: 20,
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-end",
+                  gap: 12,
+                }}
+              >
+                <p
+                  style={{
+                    color: "#fff",
+                    fontSize: 15,
+                    fontWeight: 600,
+                    lineHeight: 1.4,
+                    maxWidth: "55%",
+                    margin: 0,
+                  }}
+                >
                   {curr.desc}
                 </p>
                 <button
                   onClick={() => goTo(current + 1)}
-                  className="w-10 h-10 rounded-full bg-white text-[#0A0A0A] flex items-center justify-center text-sm cursor-pointer border-none transition-all duration-300 hover:bg-[#D4940A] hover:text-white flex-shrink-0 shadow-md"
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: "50%",
+                    background: "#fff",
+                    color: "#0A0A0A",
+                    border: "none",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: 14,
+                    transition: "all 0.3s",
+                    flexShrink: 0,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#D4940A";
+                    e.currentTarget.style.color = "#fff";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "#fff";
+                    e.currentTarget.style.color = "#0A0A0A";
+                  }}
                 >
                   ↗
                 </button>
               </div>
             </div>
 
-            {/* Next card — peek, slightly dimmed */}
+            {/* Next peek card */}
             <div
-              className="relative rounded-[28px] overflow-hidden flex-[0.78] cursor-pointer"
-              style={{ height: "clamp(300px, 42vw, 420px)" }}
+              style={{
+                position: "relative",
+                borderRadius: 28,
+                overflow: "hidden",
+                flex: "0.78",
+                height: "clamp(280px,42vw,420px)",
+                cursor: "pointer",
+              }}
               onClick={() => goTo(current + 1)}
             >
               <img
                 src={next.src}
                 alt={next.label}
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  transition: "transform 0.7s",
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/10" />
-
-              <span className="absolute top-4 left-4 backdrop-blur-sm bg-white/90 text-[#0A0A0A] text-xs font-bold tracking-wide px-4 py-1.5 rounded-full shadow-sm">
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.2), rgba(0,0,0,0.1)",
+                }}
+              />
+              <span
+                style={{
+                  position: "absolute",
+                  top: 16,
+                  left: 16,
+                  background: "rgba(255,255,255,0.92)",
+                  color: "#0A0A0A",
+                  fontSize: 11,
+                  fontWeight: 700,
+                  letterSpacing: "0.06em",
+                  padding: "6px 14px",
+                  borderRadius: 99,
+                }}
+              >
                 {next.label}
               </span>
-
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                <p className="text-white text-lg font-semibold leading-snug">
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: 20,
+                }}
+              >
+                <p
+                  style={{
+                    color: "#fff",
+                    fontSize: 15,
+                    fontWeight: 600,
+                    lineHeight: 1.4,
+                    margin: 0,
+                  }}
+                >
                   {next.desc}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Nav row: dots left, arrows right */}
-          <div className="flex items-center justify-between px-1 pt-1">
-            {/* Dot indicators */}
-            <div className="flex items-center gap-2">
+          {/* Nav row */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "0 4px",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               {ZONES.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => goTo(i)}
                   style={{
-                    width: i === current ? "24px" : "6px",
-                    height: "6px",
-                    borderRadius: "9999px",
-                    background: i === current ? "#0A0A0A" : "#C8C8C4",
+                    width: i === current ? 24 : 6,
+                    height: 6,
+                    borderRadius: 99,
+                    background:
+                      i === current ? "var(--text)" : "var(--border-strong)",
                     border: "none",
                     cursor: "pointer",
                     padding: 0,
                     transition: "all 0.35s",
-                    flexShrink: 0,
                   }}
                 />
               ))}
             </div>
-
-            {/* Arrows */}
-            <div className="flex gap-2">
+            <div style={{ display: "flex", gap: 8 }}>
               <button
                 onClick={() => goTo(current - 1)}
-                className="w-11 h-11 rounded-full border border-[#0A0A0A]/20 bg-white text-[#0A0A0A] flex items-center justify-center text-sm cursor-pointer transition-all duration-300 hover:border-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-white shadow-sm font-mono"
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: "50%",
+                  border: "1px solid var(--border-strong)",
+                  background: "var(--bg-card)",
+                  color: "var(--text)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 14,
+                  cursor: "pointer",
+                  transition: "all 0.3s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "var(--text)";
+                  e.currentTarget.style.color = "var(--bg)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--bg-card)";
+                  e.currentTarget.style.color = "var(--text)";
+                }}
               >
                 ←
               </button>
               <button
                 onClick={() => goTo(current + 1)}
-                className="w-11 h-11 rounded-full bg-[#0A0A0A] text-white flex items-center justify-center text-sm cursor-pointer border-none transition-all duration-300 hover:bg-[#D4940A] shadow-sm font-mono"
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: "50%",
+                  border: "none",
+                  background: "var(--text)",
+                  color: "var(--bg-card)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 14,
+                  cursor: "pointer",
+                  transition: "all 0.3s",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.background = "#D4940A")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.background = "var(--text)")
+                }
               >
                 →
               </button>
@@ -201,6 +447,13 @@ export default function AboutSection() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (min-width: 1024px) {
+          .about-grid { flex-direction: row !important; gap: 96px !important; }
+          .about-text { width: 270px; }
+        }
+      `}</style>
     </section>
   );
 }
