@@ -1,16 +1,84 @@
-# React + Vite
+# 🏋️ Fitness Sports Center — Gym Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive promotional website for **Fitness Sports Center**, built as part of the KonceptHive Web Development Internship Evaluation. The site showcases the gym's services, membership plans, trainers, and includes a contact inquiry form.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🔗 Links
 
-## React Compiler
+| Resource | URL |
+|----------|-----|
+| 🌐 Live Demo | [your-deployed-link.vercel.app](https://gym-website-two-chi.vercel.app/) |
+| 🎨 Figma Design | [View Figma Design](https://www.figma.com/design/AL6wlkqkmySgGUexUozsHr/Untitled?node-id=0-1&t=ZsvQoFiQwqDFFYL2-1) |
+| 💻 GitHub Repo | [github.com/yourusername/fitness-sports-center](https://github.com/rashmikaz/gym-website) |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> **Replace** the placeholder links above with your actual deployed URL, Figma link, and GitHub repo URL before submitting.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| Framework | React 18 (Vite) |
+| Styling | Tailwind CSS |
+| Fonts | Bebas Neue, DM Sans (Google Fonts) |
+| Deployment | Vercel |
+| Version Control | Git + GitHub |
+
+---
+
+## 📄 Pages & Sections
+
+The home page includes all required sections:
+
+- **Hero Section** — Full-screen video background with animated headline and CTA buttons
+- **About Section** — Gym story, stats, and founding info
+- **Services / Features Section** — Gym zones and training offerings
+- **Contact Section** — Inquiry form with name, email, and message fields
+
+---
+
+## ✅ Features
+
+- Fully responsive design (mobile, tablet, desktop)
+- Dark / Light mode toggle (persists via localStorage)
+- Mobile slide-in navigation drawer
+- Auto-sliding image card with gym zone previews
+- Scroll-aware navbar with blur effect
+- Contact form with basic validation and success feedback
+- Smooth fade-up animations on hero content
+- Brand color palette: Gold `#D4940A`, Black `#0A0A0A`, Off-white `#F2EFE7`
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- npm or yarn
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/yourusername/fitness-sports-center.git
+
+# 2. Navigate into the project folder
+cd fitness-sports-center
+
+# 3. Install dependencies
+npm install
+
+# 4. Start the development server
+npm run dev
+```
+
+The app will be running at `http://localhost:5173`
+
+
+
+
