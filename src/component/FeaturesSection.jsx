@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-const VIDEO_SRC = "/src/assets/video/background.mp4";
+const VIDEO_SRC = "/video/main.mp4";
 
 const SERVICES = [
   {

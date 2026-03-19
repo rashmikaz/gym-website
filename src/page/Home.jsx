@@ -637,7 +637,7 @@ function Hero() {
         muted
         loop
         playsInline
-        src="/src/assets/video/main.mp4"
+        src="/video/main.mp4"
       />
       <div
         style={{
