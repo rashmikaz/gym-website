@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import AboutSection from "../component/AboutSection";
 import FeaturesSection from "../component/FeaturesSection";
+import ContactSection from "../component/ContactSection";
 
 // ── Auto-sliding CTA Card ─────────────────────────────────────────────────────
 const SLIDE_IMAGES = [
@@ -675,6 +676,7 @@ export default function Home() {
       <Hero />
       <AboutSection />
       <FeaturesSection />
+      <ContactSection />
     </div>
   );
 }
